@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>{% block title %}Speed Burger{% endblock %}</title>
+  <link href="{% static "css/base.css" %}" rel="stylesheet">
+</head>
+<body>
+
+  <div id="header">
+      <a href="/" class="logo"><h1>Speed Burger</h1></a>
+  </div>
+
+  <div id="subheader">
+                    <a class="col-md-2" href="/">Home</a>
+                    <a class="col-md-2" href="{% url 'shop:product_list' %}">Menu</a>
+                    <a class="col-md-2" href="/contactus/">Contact Us</a>
+                    <a class="col-md-2"  href="/aboutus/">About Us</a>
+  {% with total_items=cart|length %}
+          {% if cart|length > 0 %}
+              <span class="col-md-2">
+                Your cart:
+                <a href="{% url "cart:cart_detail" %}">
+                  {{ total_items }} item{{ total_items|pluralize }},
+                  ${{ cart.get_total_price }}
+                </a>
+              </span>
+          {% else %}
+             <a class="cart col-md-2" href="{% url "cart:cart_detail" %}"> My Cart </a>
+          {% endif %}
+        {% endwith %}
+      <span>
+         {% if user.is_authenticated %}
+             <span class="col-md-1">Hi, {{ user.get_username }}</span>
+
+             <a class="col-md-4" href="{% url 'logout' %}?next={{ request.path }}">Logout</a>
+         {% else %}
+             <a class="col-md-3" href="{% url 'login' %}?next={{ request.path }}">Hi, Please Login</a>
+         {% endif %}
+      </span>
+
+  </div>
+
+  </div>
+  <div id="content">
+    {% block content %}
+    {% endblock %}
+  </div>
+</body>
+</html>

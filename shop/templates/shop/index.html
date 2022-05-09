@@ -1,0 +1,42 @@
+{% extends "shop/base.html" %}
+{% load static %}
+
+{% block title %}
+  Index
+{% endblock %}
+
+{% block content %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <div class="container-fluid" style="background: url('/static/img/burger-g51ca081cf_1280.jpg'); height: 600px;">
+        <div class="row">
+            <div class="col-12 mt-5 mb-5 text-center font-weight-bold" style="color: white;font-size: 3em;">
+                Speedburger, burgers at fastest speed.
+            </div>
+
+
+        </div>
+        <div class="row">
+            <div class="col-12 text-center">
+                <a href="products/" class="btn btn-primary">Check Our Menu Here!</a>
+            </div>
+        </div>
+    </div>
+    <br><br><br><br><br><br>
+    <div style="text-align: center;">
+        <p>At Speed Burger, we believe every burger is a gift from mother nature</p>
+        <p>Therefore, we treat our burger with the highest care and respect </p>
+        <p>Stop by our kitchen, see how your burger is prepared and  delivered to you </p>
+    </div>
+    <div style="text-align: center;">
+    <video class="video" width="1000" height="900" controls>
+
+        <source src="shop/static/img/pexels-katerina-holmes-5907436.mp4" type="video/mp4">
+
+
+            </video>
+
+    </div>
+<div style="text-align: center;">
+    <p>Credits: <a href="https://www.pexels.com/search/videos/burgers/">Pexels.com</a></p>
+</div>
+{% endblock %}

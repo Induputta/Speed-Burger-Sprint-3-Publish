@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+{% load static %}
+{% load crispy_forms_tags %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <link href="{% static "css/registration.css" %}" rel="stylesheet">
+</head>
+<body>
+{% block content %}
+    {%  if form.errors %}
+    {%  endif %}
+    <div class="container">
+         <form action=""{%  url 'login' %} method="post">
+             <h2 class="text-center">Log In</h2>
+             {% csrf_token %}
+             {{ form|crispy }}
+             <input type="hidden" name="next" value="{{ next }}"/>
+             <button type="submit" class="btn btn-primary btn-block">Login</button>
+         </form>
+    </div>
+
+    <footer class="page-footer font-small blue pt-4">
+        <div class="container-fluid text-center text-md-left">
+            <div class="row">
+                <div class="col text-center">
+                    <p><a href="{% url 'shop:signup' %}">Sign Up</a></p>
+                </div>
+                {# Assumes you setup the password_reset view in your URLconf #}
+                <div class="col stext-center">
+                    <p><a href="{% url 'password_reset' %}">Forgot password?</a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+{% endblock content %}
+</body>
